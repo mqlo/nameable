@@ -1,19 +1,6 @@
 Only the value of the name field will be stored in the table, and the value of the label will be in the class. This can be used to define the name of the status, role, etc.
 
 ## Example #1
-### Token class
-```php
-    /**
-     * @property TokenType $type
-    */
-    class Token extends Model
-    {
-        protected $casts = [
-            'type' => TokenTypeCast::class,
-        ];
-    ...
-    }
-```
 ### TokenType class
 ```php
     use Mqlo\Nameable\Nameable;
@@ -36,42 +23,6 @@ Only the value of the name field will be stored in the table, and the value of t
             return $this->name === self::EMAIL_CONFIRMATION;
         }
     }
-```
-### TokenTypeCast class
-```php
-    use Mqlo\Nameable\NameableCast;
-
-    class TokenTypeCast extends NameableCast
-    {
-        protected function nameableClass(): string
-        {
-            return TokenType::class;
-        }
-    }
-```
-### Token create
-```php
-    $token = new Token();
-    $token->type = TokenType::emailConfirmation();
-    $token->save();
-
-    //or
-
-    $token = Token::create(['type' => TokenType::EMAIL_CONFIRMATION]);
-```
-#### Using
-```php
-    return $token->type->isEmailConfirmation() ? 'Email confirmation token.' : '...'; 
-
-    return $token;
-    
-    [
-        ....,
-        'type' => [
-            'name' => 'email_confirmation',
-            'label' => 'Email confirmation token'
-        ]
-    ]
 ```
 ### Tables
 - tokens
