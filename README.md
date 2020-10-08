@@ -1,3 +1,7 @@
+# ATTENTION! CHANGES in version v 2.0.0
+ - ~~$nameable->name()~~, $nameable->value();
+ - ~~'name' => $this->name()~~, 'value' => $this->value().
+    
 Only the value of the name field will be stored in the table, and the value of the label will be in the class. This can be used to define the name of the status, role, etc.
 
 ## Example #1
