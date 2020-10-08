@@ -6,17 +6,17 @@ namespace Mqlo\Nameable;
 
 abstract class Nameable implements \JsonSerializable
 {
-    protected string $name;
+    protected string $value;
     protected string $label;
     protected static array $all = [];
     protected static string $message = "%s not found in %s.";
 
-    public function __construct(string $name)
+    public function __construct(string $value)
     {
-        if (!in_array($name, static::all(false), true))
-            throw new \InvalidArgumentException(sprintf(static::$message, $name, static::class));
-        $this->name = $name;
-        $this->label = static::all(true)[$name];
+        if (!in_array($value, static::all(false), true))
+            throw new \InvalidArgumentException(sprintf(static::$message, $value, static::class));
+        $this->value = $value;
+        $this->label = static::all(true)[$value];
     }
 
     final public static function all(bool $description): array
@@ -24,9 +24,9 @@ abstract class Nameable implements \JsonSerializable
         return $description ? static::$all : array_keys(static::$all);
     }
 
-    final public function name(): string
+    final public function value(): string
     {
-        return $this->name;
+        return $this->value;
     }
 
     final public function label(): string
@@ -37,7 +37,7 @@ abstract class Nameable implements \JsonSerializable
     final public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name(),
+            'value' => $this->value(),
             'label' => $this->label(),
         ];
     }

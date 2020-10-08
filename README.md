@@ -27,12 +27,12 @@ Only the value of the name field will be stored in the table, and the value of t
 
         public function isDraft(): bool
         {
-            return $this->name === self::DRAFT;
+            return $this->value === self::DRAFT;
         }
         
         public function isPublished(): bool
         {
-            return $this->name === self::PUBLISHED;
+            return $this->value === self::PUBLISHED;
         }
     }
 ```
