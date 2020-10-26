@@ -34,7 +34,7 @@ abstract class Nameable implements \JsonSerializable
         return $this->label;
     }
 
-    final public function jsonSerialize(): array
+    public function jsonSerialize(): array
     {
         return [
             'value' => $this->value(),
