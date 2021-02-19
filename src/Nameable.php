@@ -22,7 +22,16 @@ abstract class Nameable implements \JsonSerializable
 
     public static function all(bool $description): array
     {
-        return $description ? static::$all : array_keys(static::$all);
+        $names = array_keys(static::$all);
+
+        return $description
+            ? array_map(static function ($label, $name) {
+                return [
+                    'value' => $name,
+                    'label' => $label,
+                ];
+            }, static::$all, $names)
+            : $names;
     }
 
     public function value(): string
