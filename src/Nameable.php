@@ -17,7 +17,7 @@ abstract class Nameable implements \JsonSerializable
             throw new \InvalidArgumentException(sprintf(static::$message, $value, static::class));
         }
         $this->value = $value;
-        $this->label = static::all(true)[$value];
+        $this->label = static::$all[$value];
     }
 
     public static function all(bool $description): array
